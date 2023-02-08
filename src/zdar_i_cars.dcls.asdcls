@@ -1,0 +1,14 @@
+@EndUserText.label: 'Access Control for ZDAR_I_CARS'
+@MappingRole: true
+define role ZDAR_I_CARS {
+    grant
+        select
+            on
+                ZDAR_I_CARS
+                    where
+                        CurrencyCode = 'EUR'
+                        and 
+                        ( OverallStatus ) = aspect pfcg_auth(ZDAR_OSTAT, ZDAR_OSTAT, ACTVT = '03')
+                        ;
+                        
+}

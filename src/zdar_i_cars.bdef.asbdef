@@ -1,0 +1,97 @@
+managed;
+with draft;
+
+define behavior for ZDAR_I_CARS alias Car
+implementation in class zbp_dar_i_cars unique
+persistent table zdar_cars
+draft table zdar_dcars
+lock master total etag LastChangedAt
+//authorization master ( instance )
+etag master LocalLastChangedAt
+{
+  create;
+  update;
+  delete;
+  association _CarParts { create; with draft; }
+
+  field ( numbering : managed, readonly ) Caruuid;
+  field ( mandatory ) StartDate, EndDate;
+  field ( readonly ) CarId, TotalPrice, OverallStatus;
+  field ( readonly ) LastChangedAt, LastChangedBy, CreatedAt, CreatedBy, LocalLastChangedAt;
+
+  action ( features : instance ) acceptCar result [1] $self;
+  action ( features : instance ) rejectCar result [1] $self;
+  internal action recalcTotalPrice;
+
+  determination setInitialStatus on modify { create; }
+  determination calculateCarID on save { create; }
+
+  validation validateDates on save { field StartDate, EndDate; create; }
+
+  draft determine action Prepare{
+    validation validateDates;
+  }
+
+  mapping for ZDAR_CARS
+  {
+    Caruuid = caruuid;
+    CarId = car_id;
+    CarBrand = car_brand;
+    CarModel = car_model;
+    TotalPrice = total_price;
+    CurrencyCode = currency_code;
+    StartDate = start_date;
+    EndDate = end_date;
+    OverallStatus = overall_status;
+    LastChangedAt = last_changed_at;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
+
+define behavior for ZDAR_I_CARPARTS alias CarParts
+implementation in class zbp_dar_i_carparts unique
+persistent table zdar_carparts
+draft table zdar_dcarparts
+lock dependent by _Car
+//authorization dependent by _Car
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) CarpartsUuid;
+  field ( mandatory ) OrderDate, ReceiveDate;
+  field ( readonly ) CarUuid, CarpartId, Status, OrderPrice;
+  field ( readonly ) CreatedBy, LastChangedBy, LocalLastChangedAt;
+
+  determination calculateCarpartID on modify { create; }
+  determination calculateTotalPrice on modify { field OrderPrice; }
+  determination calculateOrderPrice on modify { field Amount; }
+  determination setInitialStatus on modify { create; }
+
+  action ( features : instance ) confirmOrder result [1] $self;
+  action ( features : instance ) rejectOrder result [1] $self;
+
+  validation validateReceiveDate on save { field ReceiveDate; create; }
+
+  association _Car { with draft; }
+
+  mapping for ZDAR_CARPARTS
+  {
+    CarpartsUuid = carparts_uuid;
+    CarUuid = car_uuid;
+    CarpartId = carpart_id;
+    CarpartName = carpart_name;
+    OrderDate = order_date;
+    Amount = amount;
+    ManufacturerId = manufacturer_id;
+    ReceiveDate = receive_date;
+    Status = status;
+    PartPrice = part_price;
+    OrderPrice = order_price;
+    CurrencyCode = currency_code;
+    CreatedBy = created_by;
+    LastChangedBy = last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}

@@ -1,0 +1,11 @@
+@EndUserText.label: 'Access Control for ZDAR_C_CARS'
+@MappingRole: true
+define role ZDAR_C_CARS {
+    grant
+        select
+            on
+                ZDAR_C_CARS
+                    where
+                        inheriting conditions from entity ZDAR_I_CARS;
+                        
+}

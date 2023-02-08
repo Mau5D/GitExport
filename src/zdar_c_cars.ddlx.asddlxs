@@ -1,0 +1,68 @@
+@Metadata.layer: #CORE
+@UI: {
+    headerInfo: { typeName: 'Car',
+                  typeNamePlural: 'Cars',
+                  title: { value: 'CarId',
+                            type: #STANDARD,
+                            label: 'Car' },
+                  description: { type: #STANDARD, value: 'CarBrand', label: 'Car Brand' } },
+                  presentationVariant: [{ sortOrder: [{ by: 'CarId', direction:  #ASC }], visualizations: [{type: #AS_LINEITEM}] }] }
+
+annotate view ZDAR_C_CARS with
+{
+  @UI.facet: [ { id:            'Car',
+               purpose:         #STANDARD,
+               type:            #IDENTIFICATION_REFERENCE,
+               label:           'Car',
+               position:        10 },
+             { id:              'CarParts',
+               purpose:         #STANDARD,
+               type:            #LINEITEM_REFERENCE,
+               label:           'Car Parts',
+               position:        20,
+               targetElement:   '_CarParts'} ]
+
+  @UI:{ identification: [{ position: 1, label: 'Car UUID' }] }
+  Caruuid;
+  @UI.textArrangement: #TEXT_SEPARATE
+  @UI: {  lineItem:       [ { position: 10 } ],
+          identification: [ { position: 10, label: 'ID'} ],
+          selectionField: [ { position: 10 } ] }
+  @EndUserText.label         : 'ID'
+  CarId;
+  @EndUserText.label         : 'Car Brand'
+  @UI: {  lineItem:       [ { position: 20 } ],
+          identification: [ { position: 20, label: 'Brand' } ] }
+  CarBrand;
+  @EndUserText.label         : 'Model'
+  @UI: {  lineItem:       [ { position: 30 } ],
+          identification: [ { position: 30, label: 'Model' } ] }
+  CarModel;
+  @EndUserText.label         : 'Total Price'
+  @UI: {  lineItem:       [ { position: 40 } ],
+          identification: [ { position: 40, label: 'Total Price' } ] }
+  TotalPrice;
+  @EndUserText.label         : 'Start Date'
+  @UI: {  lineItem:       [ { position: 50 } ],
+          identification: [ { position: 50, label: 'Start Date' } ] }
+  StartDate;
+  @EndUserText.label         : 'End Date'
+  @UI: {  lineItem:       [ { position: 60 } ],
+          identification: [ { position: 60, label: 'End Date' } ] }
+  EndDate;
+  @EndUserText.label         : 'Status'
+  @UI: {  lineItem:       [ { position: 70 },
+                            { type: #FOR_ACTION, dataAction: 'acceptCar', label: 'Accept Order' },
+                            { type: #FOR_ACTION, dataAction: 'rejectCar', label: 'Reject Order' }
+                          ],
+          identification: [ { position: 70, label: 'Status' },
+                            { type: #FOR_ACTION, dataAction: 'acceptCar', label: 'Accept Order' },
+                            { type: #FOR_ACTION, dataAction: 'rejectCar', label: 'Reject Order' }
+                          ] }
+  Description;
+  @UI.hidden: true
+  LastChangedAt;
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+}

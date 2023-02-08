@@ -1,0 +1,29 @@
+projection;
+use draft;
+//strict ( 1 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for ZDAR_C_CARS alias Car
+//use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _CarParts { create; with draft; }
+
+  use action acceptCar;
+  use action rejectCar;
+
+}
+
+define behavior for ZDAR_C_CARPARTS alias CarParts
+//use etag
+{
+  use update;
+  use delete;
+
+  use action confirmOrder;
+  use action rejectOrder;
+
+  use association _Car { with draft; }
+}

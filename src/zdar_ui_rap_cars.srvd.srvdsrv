@@ -1,0 +1,8 @@
+@EndUserText.label: 'Service Defin for Car BO'
+define service ZDAR_UI_RAP_CARS {
+  expose ZDAR_C_CARS as Car;
+  expose ZDAR_C_CARPARTS as CarParts;
+  expose ZDAR_I_MANUFACTR as Manuf;
+  expose ZDAR_I_WORKERS as Workers;
+  expose I_Currency as Currency;
+}
