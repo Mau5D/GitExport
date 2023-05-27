@@ -3,10 +3,12 @@
 {
 "FROM":
 [
-"ZDAR_I_MANUFACTR"
+"ZDAR_COMPLOG"
 ],
 "ASSOCIATED":
-[],
+[
+"ZDAR_I_CARS"
+],
 "BASE":
 [],
 "ANNO_REF":

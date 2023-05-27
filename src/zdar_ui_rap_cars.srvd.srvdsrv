@@ -2,7 +2,8 @@
 define service ZDAR_UI_RAP_CARS {
   expose ZDAR_C_CARS as Car;
   expose ZDAR_C_CARPARTS as CarParts;
+  expose ZDAR_C_PROD_LINE as ProdLine;
   expose ZDAR_I_MANUFACTR as Manuf;
-  expose ZDAR_I_WORKERS as Workers;
+  expose ZDAR_C_COMPLOG as Log;
   expose I_Currency as Currency;
 }

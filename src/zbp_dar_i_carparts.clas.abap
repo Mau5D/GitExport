@@ -1,5 +1,9 @@
 CLASS zbp_dar_i_carparts DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zdar_i_cars.
+protected section.
+private section.
 ENDCLASS.
 
-CLASS zbp_dar_i_carparts IMPLEMENTATION.
+
+
+CLASS ZBP_DAR_I_CARPARTS IMPLEMENTATION.
 ENDCLASS.

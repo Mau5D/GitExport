@@ -7,15 +7,15 @@ define root view entity ZDAR_C_CARS
   as projection on ZDAR_I_CARS as Cars
 {
   key Caruuid,
-      @Search.defaultSearchElement: true
-      @Consumption.valueHelpDefinition: [{ entity: { name: 'ZDAR_VH_CAR_ID', element: 'CarId'} }]
-      @ObjectModel.text.element: ['CarBrand']
       CarId,
       @Search.defaultSearchElement: true
-      @Consumption.valueHelpDefinition: [{ entity: { name: 'ZDAR_VH_CAR_BRAND', element: 'CarBrand'} }]
+      @Consumption.valueHelpDefinition: [{ entity: { name: 'ZDAR_VH_CAR_BRAND', element: 'SuppBrand'} }]
       @Semantics.text: true
       CarBrand,
       CarModel,
+      Amount,
+      CarType,
+      Priority,
       @Semantics.amount.currencyCode: 'CurrencyCode'
       TotalPrice,
       @Consumption.valueHelpDefinition: [{ entity: { name: 'I_Currency', element: 'Currency'} }]
@@ -31,6 +31,8 @@ define root view entity ZDAR_C_CARS
 
       /* associations */
       _CarParts : redirected to composition child ZDAR_C_CARPARTS,
+      _ProdLine : redirected to composition child ZDAR_C_PROD_LINE,
+      _Log : redirected to composition child ZDAR_C_COMPLOG,
       _Status
       //_Currency
 

@@ -1,0 +1,38 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: { typeName: 'Production Line',
+                typeNamePlural: 'Production Line',
+                title: { value: 'Vin',
+                            type: #STANDARD,
+                            label: 'CarParts' },
+                  description: { type: #STANDARD, value: 'Vin', label: 'Vin' } } }
+annotate view ZDAR_C_PROD_LINE with
+{
+  @UI.facet: [ { id:          'ProdLine',
+                 purpose:       #STANDARD,
+                 type:          #IDENTIFICATION_REFERENCE,
+                 label:         'Production Line',
+                 position:      10 }  ]
+  @UI: { lineItem:       [ { position: 10 } ],
+         identification: [ { position: 10, label: 'Vin' } ] }
+  Vin;
+  @UI.hidden: true
+  Caruuid;
+  @UI: { lineItem:       [ { position: 20 } ],
+     identification: [ { position: 20, label: 'Start Date' } ] }
+  StartDate;
+  @UI: { lineItem:       [ { position: 30 } ],
+     identification: [ { position: 30, label: 'End Date' } ] }
+  EndDate;
+  @UI: { lineItem:       [ { position: 40 } ],
+     identification: [ { position: 40, label: 'Status' } ] }
+  Status;
+  @UI: { lineItem:       [ { position: 50 } ],
+     identification: [ { position: 50, label: 'Description' } ] }
+  Description;
+  @UI.hidden: true
+  LastChangedAt;
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+}

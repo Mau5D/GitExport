@@ -20,9 +20,28 @@ annotate view ZDAR_C_CARS with
                type:            #LINEITEM_REFERENCE,
                label:           'Car Parts',
                position:        20,
-               targetElement:   '_CarParts'} ]
+               targetElement:   '_CarParts'},
+             { id:              'Log',
+               purpose:         #STANDARD,
+               type:            #LINEITEM_REFERENCE,
+               label:           'Component Log',
+               position:        30,
+               targetElement:   '_Log'},
+             { id:              'ProdLine',
+               purpose:         #STANDARD,
+               type:            #LINEITEM_REFERENCE,
+               label:           'Production Line',
+               position:        40,
+               targetElement:   '_ProdLine'} ]
 
-  @UI:{ identification: [{ position: 1, label: 'Car UUID' }] }
+  //@UI:{ identification: [{ position: 1, label: 'Car UUID' }] }
+  @UI: {  lineItem:       [ { position: 70 },
+                            { type: #FOR_ACTION, dataAction: 'availabilityCheck', label: 'Availability Check' }
+                          ],
+          identification: [ { position: 70 },
+                            { type: #FOR_ACTION, dataAction: 'availabilityCheck', label: 'Availability Check' }
+                          ] }
+  @UI.hidden: true
   Caruuid;
   @UI.textArrangement: #TEXT_SEPARATE
   @UI: {  lineItem:       [ { position: 10 } ],
@@ -38,28 +57,37 @@ annotate view ZDAR_C_CARS with
   @UI: {  lineItem:       [ { position: 30 } ],
           identification: [ { position: 30, label: 'Model' } ] }
   CarModel;
-  @EndUserText.label         : 'Total Price'
+  @EndUserText.label         : 'Amount'
   @UI: {  lineItem:       [ { position: 40 } ],
-          identification: [ { position: 40, label: 'Total Price' } ] }
+          identification: [ { position: 40, label: 'Amount' } ] }
+  Amount;
+  @EndUserText.label         : 'Type'
+  @UI: {  lineItem:       [ { position: 50 } ],
+          identification: [ { position: 50, label: 'Type' } ] }
+  CarType;
+  @EndUserText.label         : 'Total Price'
+  @UI: {  lineItem:       [ { position: 60 } ],
+          identification: [ { position: 60, label: 'Total Price' } ] }
   TotalPrice;
   @EndUserText.label         : 'Start Date'
-  @UI: {  lineItem:       [ { position: 50 } ],
-          identification: [ { position: 50, label: 'Start Date' } ] }
+  @UI: {  lineItem:       [ { position: 70 } ],
+          identification: [ { position: 70, label: 'Start Date' } ] }
   StartDate;
   @EndUserText.label         : 'End Date'
-  @UI: {  lineItem:       [ { position: 60 } ],
-          identification: [ { position: 60, label: 'End Date' } ] }
+  @UI: {  lineItem:       [ { position: 80 } ],
+          identification: [ { position: 80, label: 'End Date' } ] }
   EndDate;
   @EndUserText.label         : 'Status'
-  @UI: {  lineItem:       [ { position: 70 },
-                            { type: #FOR_ACTION, dataAction: 'acceptCar', label: 'Accept Order' },
-                            { type: #FOR_ACTION, dataAction: 'rejectCar', label: 'Reject Order' }
-                          ],
-          identification: [ { position: 70, label: 'Status' },
-                            { type: #FOR_ACTION, dataAction: 'acceptCar', label: 'Accept Order' },
-                            { type: #FOR_ACTION, dataAction: 'rejectCar', label: 'Reject Order' }
-                          ] }
-  Description;
+  //@UI.textArrangement: #TEXT_SEPARATE
+//  @UI: {  lineItem:       [ { position: 70 },
+//                            { type: #FOR_ACTION, dataAction: 'acceptCar', label: 'Accept Order' },
+//                            { type: #FOR_ACTION, dataAction: 'rejectCar', label: 'Reject Order' }
+//                          ],
+//          identification: [ { position: 70, label: 'Status' },
+//                            { type: #FOR_ACTION, dataAction: 'acceptCar', label: 'Accept Order' },
+//                            { type: #FOR_ACTION, dataAction: 'rejectCar', label: 'Reject Order' }
+//                          ] }
+  OverallStatus;
   @UI.hidden: true
   LastChangedAt;
   @UI.hidden: true

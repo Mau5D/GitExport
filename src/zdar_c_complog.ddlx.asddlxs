@@ -1,0 +1,32 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: { typeName: 'Component Log',
+                typeNamePlural: 'Components Logs',
+                title: { value: 'LogUuid',
+                            type: #STANDARD,
+                            label: 'CarParts' },
+                  description: { type: #STANDARD, value: 'LogUuid', label: 'Log ID' } } }
+
+annotate view ZDAR_C_COMPLOG with
+{
+  @UI.facet: [ { id:          'Log',
+                   purpose:       #STANDARD,
+                   type:          #IDENTIFICATION_REFERENCE,
+                   label:         'Component Log',
+                   position:      10 }  ]
+  @UI.hidden: true
+  LogUuid;
+  @UI.hidden: true
+  CarUuid;
+  @UI.hidden: true
+  CarpartUuid;
+  @UI: { lineItem:       [ { position: 10 } ],
+       identification: [ { position: 10, label: 'Status' } ] }
+  Status;
+  @UI: { lineItem:       [ { position: 50 } ],
+       identification: [ { position: 50, label: 'Message' } ] }
+  Message;
+  @UI.hidden: true
+  locallastchangedat;
+
+}

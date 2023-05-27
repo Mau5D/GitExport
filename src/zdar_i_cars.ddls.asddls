@@ -4,6 +4,8 @@
 define root view entity ZDAR_I_CARS
   as select from zdar_cars as Car
   composition [0..*] of ZDAR_I_CARPARTS as _CarParts
+  composition [0..*] of ZDAR_I_PROD_LINE as _ProdLine
+  composition [0..*] of ZDAR_I_COMPLOG as _Log
   //association        to ZDAR_VH_CAR_ID         as _CarIdVH    on $projection.CarId = _CarIdVH.CarId
   //association        to ZDAR_VH_CAR_BRAND      as _CarBrandVH on $projection.CarId = _CarBrandVH.CarId
   //association [0..1] to I_Currency             as _Currency          on $projection.CurrencyCode = _Currency.Currency
@@ -13,6 +15,9 @@ define root view entity ZDAR_I_CARS
       car_id                as CarId,
       car_brand             as CarBrand,
       car_model             as CarModel,
+      car_type              as CarType,
+      amount                as Amount,
+      priority              as Priority,
       @Semantics.amount.currencyCode: 'CurrencyCode'
       total_price           as TotalPrice,
       currency_code         as CurrencyCode,
@@ -33,6 +38,8 @@ define root view entity ZDAR_I_CARS
 
       /* associations */
       _CarParts,
+      _ProdLine,
+      _Log,
       _Status
       //_CarIdVH,
       //_CarBrandVH,

@@ -2,10 +2,10 @@
 @UI: {
   headerInfo: { typeName: 'Car Part',
                 typeNamePlural: 'Car Parts',
-                title: { value: 'CarpartId',
+                title: { value: 'PartName',
                             type: #STANDARD,
                             label: 'CarParts' },
-                  description: { type: #STANDARD, value: 'CarpartName', label: 'Carpart Name' } } }
+                  description: { type: #STANDARD, value: 'PartName', label: 'Part Name' } } }
 annotate view ZDAR_C_CARPARTS with
 {
   @UI.facet: [ { id:          'CarParts',
@@ -19,41 +19,42 @@ annotate view ZDAR_C_CARPARTS with
   CarpartsUuid;
   @UI.hidden: true
   CarUuid;
-  @UI: { lineItem:       [ { position: 20 } ],
-       identification: [ { position: 20, label: 'ID' } ] }
-  CarpartId;
+  @UI.textArrangement: #TEXT_FIRST
+  @UI: { lineItem:       [ { position: 10 } ],
+       identification: [ { position: 10, label: 'Manufacturer Id' } ] }
+  ManufacturerId;
   @UI: { lineItem:       [ { position: 30 } ],
-       identification: [ { position: 30, label: 'Name' } ] }
-  CarpartName;
+       identification: [ { position: 30, label: 'PartName' } ] }
+  PartName;
   @UI: { lineItem:       [ { position: 40 } ],
-       identification: [ { position: 40, label: 'Order Date' } ] }
-  OrderDate;
+       identification: [ { position: 40, label: 'Price' } ] }
+  PartPrice;
   @UI: { lineItem:       [ { position: 50 } ],
        identification: [ { position: 50, label: 'Amount' } ] }
   Amount;
-  @UI.textArrangement: #TEXT_FIRST
-  @UI: { lineItem:       [ { position: 60 } ],
-       identification: [ { position: 60, label: 'Manufacturer' } ] }
-  ManufacturerId;
-  @UI: { lineItem:       [ { position: 70 } ],
-       identification: [ { position: 70, label: 'Receive Date' } ] }
-  ReceiveDate;
-  //@UI.textArrangement: #TEXT_SEPARATE
-  @UI: {  lineItem:       [ { position: 80, label: 'Status', criticality: 'Criticality' },
-                            { type: #FOR_ACTION, dataAction: 'confirmOrder', label: 'Set Received Status' },
-                            { type: #FOR_ACTION, dataAction: 'rejectOrder', label: 'Set Canceled Status' }
-                          ],
-          identification: [ { position: 80, label: 'Status', criticality: 'Criticality' },
-                            { type: #FOR_ACTION, dataAction: 'confirmOrder', label: 'Set Received Status' },
-                            { type: #FOR_ACTION, dataAction: 'rejectOrder', label: 'Set Canceled Status' }
-                          ] }
-  Description;
-  @UI: { lineItem:       [ { position: 90 } ],
-       identification: [ { position: 90, label: 'Order Price' } ] }
-  OrderPrice;
-  @UI: { lineItem:       [ { position: 100 } ],
-       identification: [ { position: 100, label: 'Part Price'} ] }
-  PartPrice;
+//  @UI.textArrangement: #TEXT_FIRST
+//  @UI: { lineItem:       [ { position: 60 } ],
+//       identification: [ { position: 60, label: 'Manufacturer' } ] }
+//  ManufacturerId;
+//  @UI: { lineItem:       [ { position: 70 } ],
+//       identification: [ { position: 70, label: 'Receive Date' } ] }
+//  ReceiveDate;
+//  //@UI.textArrangement: #TEXT_SEPARATE
+//  @UI: {  lineItem:       [ { position: 80, label: 'Status', criticality: 'Criticality' },
+//                            { type: #FOR_ACTION, dataAction: 'confirmOrder', label: 'Set Received Status' },
+//                            { type: #FOR_ACTION, dataAction: 'rejectOrder', label: 'Set Canceled Status' }
+//                          ],
+//          identification: [ { position: 80, label: 'Status', criticality: 'Criticality' },
+//                            { type: #FOR_ACTION, dataAction: 'confirmOrder', label: 'Set Received Status' },
+//                            { type: #FOR_ACTION, dataAction: 'rejectOrder', label: 'Set Canceled Status' }
+//                          ] }
+//  Description;
+//  @UI: { lineItem:       [ { position: 90 } ],
+//       identification: [ { position: 90, label: 'Order Price' } ] }
+//  OrderPrice;
+//  @UI: { lineItem:       [ { position: 100 } ],
+//       identification: [ { position: 100, label: 'Part Price'} ] }
+//  PartPrice;
   @UI.hidden: true
   CreatedBy;
   @UI.hidden: true

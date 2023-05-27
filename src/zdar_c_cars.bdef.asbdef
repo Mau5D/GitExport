@@ -9,21 +9,40 @@ define behavior for ZDAR_C_CARS alias Car
   use update;
   use delete;
 
-  use association _CarParts { create; with draft; }
+  use association _CarParts { with draft; }
 
-  use action acceptCar;
-  use action rejectCar;
+  use action availabilityCheck;
+//  use action acceptCar;
+//  use action rejectCar;
 
 }
 
 define behavior for ZDAR_C_CARPARTS alias CarParts
 //use etag
 {
-  use update;
-  use delete;
+  //use update;
+  //use delete;
 
-  use action confirmOrder;
-  use action rejectOrder;
+//  use action confirmOrder;
+//  use action rejectOrder;
+
+  use association _Car { with draft; }
+}
+
+define behavior for ZDAR_C_PROD_LINE alias ProdLine
+//use etag
+{
+//  use update;
+//  use delete;
+
+  use association _Car { with draft; }
+}
+
+define behavior for ZDAR_C_COMPLOG alias Log
+//use etag
+{
+//  use update;
+//  use delete;
 
   use association _Car { with draft; }
 }
